@@ -24,15 +24,7 @@ import ModifiedPrelude
 -- Question 1
 
 -- Sum of all the elements of a list
---
--- >>> sumList [1, 2, 3, 4]
--- 10
---
--- >>> sumList [1, -2, 3, 5]
--- 7
---
--- >>> sumList [1, 3, 5, 7, 9, 11]
--- 36
+
 
 sumList :: [Int] -> Int
 sumList []     = 0       --basecase
@@ -45,11 +37,7 @@ sumList (x:xs) = x + sumList xs  --recursion
 --    and otherwise returns the list of digits of `n` in the
 --    order in which they appear
 --
--- >>> digitsOfInt 3124
--- [3, 1, 2, 4]
---
--- >>> digitsOfInt 352663
--- [3, 5, 2, 6, 6, 3]
+
 
 
 digitsOfInt :: Int -> [Int]
@@ -63,11 +51,7 @@ digitsOfInt n
 
 -- | `digits n` retruns the list of digits of `n`
 --
--- >>> digits 31243
--- [3,1,2,4,3]
---
--- digits (-23422)
--- [2, 3, 4, 2, 2]
+
 
 digits :: Int -> [Int]
 digits 0 = []   -- base case
@@ -99,9 +83,7 @@ sumDigitsHelper (x:xs) = x + sumDigitsHelper xs
 --   an additive persistence of 2
 --
 -- NOTE: assume additivePersistence is only called with positive numbers
---
--- >>> additivePersistence 9876
--- 2
+
 
 additivePersistence :: Int -> Int
 additivePersistence n
@@ -120,8 +102,6 @@ additivePersistence n
 --
 -- NOTE: assume digitalRoot is only called with positive numbers
 --
--- >>> digitalRoot 9876
--- 3
 
 digitalRoot :: Int -> Int
 digitalRoot n
@@ -129,17 +109,6 @@ digitalRoot n
     | otherwise = digitalRoot (sumDigits n) 
 
 -- Question 6
-
--- listReverse [x1,x2,...,xn] returns [xn,...,x2,x1]
---
--- >>> listReverse []
--- []
---
--- >>> listReverse [1,2,3,4]
--- [4,3,2,1]
---
--- >>> listReverse ["i", "want", "to", "ride", "my", "bicycle"]
--- ["bicycle", "my", "ride", "to", "want", "i"]
 
 listReverse :: [a] -> [a]
 listReverse xs = reverseHelper xs []
@@ -153,12 +122,7 @@ reverseHelper (x:xs) reversed = reverseHelper xs (x:reversed)
 
 -- A string which has the property of reading the same 
 -- forwards as it does backwards
---
--- >>> palindrome "malayalam"
--- True
---
--- >>> palindrome "myxomatosis"
--- False
+
 
 palindrome :: String -> Bool
 palindrome str = str == listReverse str
@@ -167,8 +131,6 @@ palindrome str = str == listReverse str
 --
 -- Compute all the digital rool of all elements in the list 
 --
--- >>> rootList [10, 11, 12]
--- [1, 2, 3]
 
 rootList :: [Int] -> [Int]
 rootList [] = []
@@ -190,11 +152,7 @@ rootList (x:xs) = digitalRoot x : rootList xs
 --   Otherwise, if no such ki exists in the list, `def` is returned.
 --
 
--- >>> assoc 0 "william" [("ranjit", 85), ("william",23), ("moose",44)]
--- 23
---
--- >>> assoc 0 "bob" [("ranjit",85), ("william",23), ("moose",44)]
--- 0
+
 
 assoc :: Int -> String -> [(String, Int)] -> Int
 assoc def key [] = def  
@@ -209,9 +167,6 @@ assoc def key ((k, v):rest)
 --   that is, second, third ... occurrences, removed,
 --   and where the remaining elements appear in the
 --   same order as in l.
-
--- >>> removeDuplicates [1,6,2,4,12,2,13,12,6,9,13]
--- [1,6,2,4,12,13,9]
 
 
 removeDuplicates :: [Int] -> [Int]
@@ -243,8 +198,6 @@ ff:: Int -> (Bool, Int)
 ff x = (xx < 100, xx)
       where xx = x * x * x
 
--- >>> wwhile ff 2
--- 512
 
 wwhile :: (a -> (Bool, a)) -> a -> a
 wwhile f x = let (b, x') = f x in
@@ -268,22 +221,7 @@ collatz n | even n    = n `div` 2
 gg :: Int -> Int
 gg x = truncate (1e6 * cos (1e-6 * fromIntegral x))
 
--- >>> fixpointL collatz 1
--- [1]
--- >>> fixpointL collatz 2
--- [2,1]
--- >>> fixpointL collatz 3
--- [3,5,8,2,1]
--- >>> fixpointL collatz 4
--- [4,1]
--- >>> fixpointL collatz 5
--- [5,8,2,1]
--- >>> fixpointL gg 0
--- [0, 1000000, 540302, 857553, 654289, 793480,701369,763959,
---  722102,750418,731403,744238,735604,741425,737506,740147,738369,
---  739567,738760,739304,738937,739184,739018,739130,739054,739106,
---  739071,739094,739079,739089,739082,739087,739083,739086,739084,739085]
--- this is because cos 0.739085 is approximately 0.739085
+
 
 fixpointL :: (Int -> Int) -> Int -> [Int]
 fixpointL f x0 = fixpointHelper f x0 []
@@ -312,18 +250,6 @@ append (y:ys) x = y : append ys x
 -- Now refactor your implementation of `fixpointL` so that it just returns
 -- the LAST element of the list, i.e. the `xn` that is equal to `f xn`
 
--- >>> fixpointW collatz 1
--- 1
--- >>> fixpointW collatz 2
--- 1
--- >>> fixpointW collatz 3
--- 1
--- >>> fixpointW collatz 4
--- 1
--- >>> fixpointW collatz 5
--- 1
--- >>> fixpointW g 0
--- 739085
 
 fixpointW :: (Int -> Int) -> Int -> Int
 fixpointW f x0 = getLast (fixpointL f x0)
@@ -343,16 +269,6 @@ getLast (_:xs) = getLast xs
 
 -- Question 14
 
--- sqSum [x1, ... , xn] should return (x1^2 + ... + xn^2)
---
--- >>> sqSum []
--- 0
---
--- >>> sqSum [1,2,3,4]
--- 30
---
--- >>> sqSum [(-1), (-2), (-3), (-4)]
--- 30
 
 sqSum :: [Int] -> Int
 sqSum = foldr (\x acc -> x*x + acc) 0
@@ -363,14 +279,7 @@ sqSum = foldr (\x acc -> x*x + acc) 0
 
 -- `pipe [f1,...,fn] x` should return `f1(f2(...(fn x)))`
 --
--- >>> pipe [] 3
--- 3
---
--- >>> pipe [(\x -> x+x), (\x -> x + 3)] 3
--- 12
---
--- >>> pipe [(\x -> x * 4), (\x -> x + x)] 3
--- 24
+
 
 pipe :: [(a -> a)] -> (a -> a)
 pipe = foldr (.) id
@@ -384,11 +293,6 @@ pipe = foldr (.) id
 -- >>> sepConcat "---" []
 -- ""
 --
--- >>> sepConcat ", " ["foo", "bar", "baz"]
--- "foo, bar, baz"
---
--- >>> sepConcat "#" ["a","b","c","d","e"]
--- "a#b#c#d#e"
 
 sepConcat :: String -> [String] -> String
 sepConcat sep = foldr (\str acc -> if acc == "" then str else str ++ sep ++ acc) ""
@@ -406,14 +310,7 @@ intString = show
 -- `stringOfList pp [x1,...,xn]` uses the element-wise 
 --  printer `pp` to convert the element-list into a string:
 --
--- >>> stringOfList intString [1, 2, 3, 4, 5, 6]
--- "[1, 2, 3, 4, 5, 6]"
---
--- >>> stringOfList (\x -> x) ["foo"]
--- "[foo]"
---
--- >>> stringOfList (stringOfList show) [[1, 2, 3], [4, 5], [6], []]
--- "[[1, 2, 3], [4, 5], [6], []]"
+
 
 stringOfList :: (a -> String) -> [a] -> String
 stringOfList f xs = "[" ++ sepConcat ", " (map f xs) ++ "]"
@@ -429,12 +326,7 @@ type BigInt = [Int]
 -- You will be writing three helper functions to solve Question 19 
 
 -- `clone x n` returns a `[x,x,...,x]` containing `n` copies of `x`
---
--- >>> clone 3 5
--- [3,3,3,3,3]
---
--- >>> clone "foo" 2
--- ["foo", "foo"]
+
 
 clone :: a -> Int -> [a]
 clone x n
@@ -447,11 +339,7 @@ clone x n
 --  padded with extra `0` on the left such that the lengths of `l1'` 
 --  and `l2'` are equal.
 --
--- >>> padZero [9,9] [1,0,0,2]
--- ([0,0,9,9], [1,0,0,2])
---
--- >>> padZero [1,0,0,2] [9,9]
--- ([1,0,0,2], [0,0,9,9])
+
 
 padZero :: BigInt -> BigInt -> (BigInt, BigInt)
 padZero xs ys 
@@ -465,14 +353,7 @@ padZero xs ys
 
 -- | `removeZero ds` strips out all leading `0` from the left-side of `ds`.
 --
--- >>> removeZero [0,0,0,1,0,0,2]
--- [1,0,0,2]
---
--- >>> removeZero [9,9]
--- [9,9]
---
--- >>> removeZero [0,0,0,0]
--- []
+
 
 removeZero :: BigInt -> BigInt
 removeZero = dropWhileHelper (== 0)
@@ -490,11 +371,7 @@ dropWhileHelper pred (x:xs)
 
 -- `bigAdd n1 n2` returns the `BigInt` representing the sum of `n1` and `n2`
 --
--- >>> bigAdd [9, 9] [1, 0, 0, 2]
--- [1, 1, 0, 1]
---
--- >>> bigAdd [9, 9, 9, 9] [9, 9, 9]
--- [1, 0, 9, 9, 8]
+
 
 bigAdd :: BigInt -> BigInt -> BigInt
 bigAdd a b = reverse $ bigAdd' (reverse a) (reverse b) 0
@@ -516,9 +393,7 @@ bigAdd a b = reverse $ bigAdd' (reverse a) (reverse b) 0
 
 -- `mulByDigit i n` returns the result of multiplying
 --  the digit `i` (between 0..9) with `BigInt` `n`.
---
--- >>> mulByDigit 9 [9,9,9,9]
--- [8,9,9,9,1]
+
 
 mulByDigit :: Int -> BigInt -> BigInt
 mulByDigit d xs = removeZero $ reverse $ mulByDigit' d (reverse xs) 0
@@ -533,12 +408,7 @@ mulByDigit d xs = removeZero $ reverse $ mulByDigit' d (reverse xs) 0
 
 -- `bigMul n1 n2` returns the `BigInt` representing the 
 --  product of `n1` and `n2`.
---
--- >>> bigMul [9,9,9,9] [9,9,9,9]
--- [9,9,9,8,0,0,0,1]
---
--- >>> bigMul [9,9,9,9,9] [9,9,9,9,9]
--- [9,9,9,9,8,0,0,0,0,1]
+
     
 
 bigMul :: BigInt -> BigInt -> BigInt
