@@ -1,6 +1,6 @@
 ------------- CS 420 : Advanced Programming Languages -----------------
 
----------- Assignment 2 : Functional Prgamming on Haskell -------------
+---------- Assignment 2 -------------
 
 -----------------------------------------------------------------------
 
